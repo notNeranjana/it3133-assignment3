@@ -4,8 +4,8 @@ import { StyleSheet } from "react-native";
 import { PaperProvider } from "react-native-paper";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-import Home from "./components/Home";
 import Login from "./components/Login";
+import Profile from "./components/Profile";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -33,9 +33,9 @@ export default function App() {
               options={{ title: "UoV Student Care" }}
             />
             <Stack.Screen
-              name="home"
-              component={Home}
-              options={{ title: "Home" }}
+              name="profile"
+              component={Profile}
+              options={{ title: "UoV Student Care" }}
             />
           </Stack.Navigator>
         </NavigationContainer>

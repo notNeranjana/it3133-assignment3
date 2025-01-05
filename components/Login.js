@@ -10,6 +10,10 @@ import {
   View,
 } from "react-native";
 import { Button, TextInput } from "react-native-paper";
+import { Icon, MD3Colors } from "react-native-paper";
+import { useNavigation } from "@react-navigation/native";
+
+import { students } from "../assets/StudentsDb";
 
 const Login = () => {
   const [data, setData] = useState({
@@ -19,9 +23,28 @@ const Login = () => {
   const [isSecure, setIsSecure] = useState(true);
   const [error, setError] = useState("");
 
+  const navigation = useNavigation();
+
+  const handleLogin = () => {
+    if (!data.username || !data.password) {
+      setError("Please fill all fields");
+      return;
+    }
+
+    const student = students.find((s) => s.username === data.username);
+
+    if (!student || student.password !== data.password) {
+      setError("Please check your username and password");
+      return;
+    }
+
+    navigation.navigate("profile", { student });
+  };
+
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.view}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.body}>
@@ -58,11 +81,18 @@ const Login = () => {
               <Button
                 mode="contained"
                 style={styles.button}
-                onPress={() => console.log("Pressed")}
+                onPress={handleLogin}
               >
                 Login
               </Button>
             </View>
+
+            {error && (
+              <View style={styles.error}>
+                <Icon source="alert-circle" size={20} style={styles.icon} />
+                <Text>{error}</Text>
+              </View>
+            )}
           </View>
 
           <View style={styles.footer}>
@@ -77,6 +107,9 @@ const Login = () => {
 export default Login;
 
 const styles = StyleSheet.create({
+  view: {
+    flex: 1,
+  },
   body: {
     flex: 1,
     backgroundColor: "#fff",
@@ -118,5 +151,13 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: "#4b0150",
     marginTop: 20,
+  },
+  error: {
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: "#f4edf7",
+    borderRadius: 5,
+    flexDirection: "row",
+    gap: 6,
   },
 });

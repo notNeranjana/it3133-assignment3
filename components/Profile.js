@@ -1,14 +1,16 @@
 import { View, Text, StyleSheet } from "react-native";
 
-const Home = () => {
+const Profile = ({ route }) => {
+  const { student } = route.params;
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Home Screen</Text>
+      <Text style={styles.text}>Welcome {student.name}</Text>
     </View>
   );
 };
 
-export default Home;
+export default Profile;
 
 const styles = StyleSheet.create({
   container: {
