@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
   Image,
@@ -9,9 +10,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import { Button, TextInput } from "react-native-paper";
-import { Icon, MD3Colors } from "react-native-paper";
-import { useNavigation } from "@react-navigation/native";
+import { Button, Icon, TextInput } from "react-native-paper";
 
 import { students } from "../assets/StudentsDb";
 
@@ -38,7 +37,7 @@ const Login = () => {
       return;
     }
 
-    navigation.navigate("profile", { student });
+    navigation.navigate("home", { student });
   };
 
   return (

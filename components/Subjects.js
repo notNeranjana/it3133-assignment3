@@ -1,26 +1,21 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { Avatar, Card } from "react-native-paper";
+import { courses } from "../assets/StudentsDb";
 
-const Profile = ({ student }) => {
+const Subjects = ({ student }) => {
+  const course = courses.find((c) => c.id === student.course_id);
+
   return (
     <View style={styles.view}>
       <Image source={require("../assets/logo.png")} style={styles.image} />
 
       <Card style={{ margin: 20 }}>
         <Card.Content style={styles.cardContent}>
-          <Image source={student.profile_pic} style={styles.profile_pic} />
-          <Text style={styles.h1}>{student.name}</Text>
+          <Text style={styles.h1}>{course.name}</Text>
           <Text style={{ textAlign: "center" }}>
-            Age : {student.age} | Gender: {student.gender}
+            Code: {course.course_code} | Dept: {course.department}
           </Text>
-
-          <Text style={{ fontWeight: "bold", marginTop: 20 }}>
-            Contact Information
-          </Text>
-          <Text>Email: {student.email}</Text>
-          <Text>Phone: {student.phone}</Text>
-          <Text>Address: {student.address}</Text>
 
           <View
             style={{
@@ -30,17 +25,20 @@ const Profile = ({ student }) => {
             }}
           />
 
-          <Text style={{ fontWeight: "bold" }}>Biological Information</Text>
-          <Text>Gender: {student.gender}</Text>
-          <Text>Age: {student.age}</Text>
-          <Text>Blood Group: {student.blood_group}</Text>
+          <Text style={{ fontWeight: "bold", marginTop: 20 }}>
+            Course Information
+          </Text>
+          <Text>Code: {course.course_code}</Text>
+          <Text>Department: {course.department}</Text>
+          <Text>Duration: {course.duration}</Text>
+          <Text>Description: {course.description}</Text>
         </Card.Content>
       </Card>
     </View>
   );
 };
 
-export default Profile;
+export default Subjects;
 
 const styles = StyleSheet.create({
   view: {

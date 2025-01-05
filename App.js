@@ -6,6 +6,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import Login from "./components/Login";
 import Profile from "./components/Profile";
+import Home from "./components/Home";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -33,8 +34,8 @@ export default function App() {
               options={{ title: "UoV Student Care" }}
             />
             <Stack.Screen
-              name="profile"
-              component={Profile}
+              name="home"
+              component={Home}
               options={{ title: "UoV Student Care" }}
             />
           </Stack.Navigator>

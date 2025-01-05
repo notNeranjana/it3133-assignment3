@@ -288,6 +288,7 @@ export const courses = [
     course_code: "MA401",
   },
 ];
+
 export const subjects = [
   { id: 1, course_id: 1, name: "Data Structures" },
   { id: 2, course_id: 1, name: "Algorithms" },
@@ -302,6 +303,7 @@ export const subjects = [
   { id: 11, course_id: 4, name: "Calculus" },
   { id: 12, course_id: 4, name: "Discrete Mathematics" },
 ];
+
 export const marks = [
   { student_id: 1, subject_id: 1, marks: 85 },
   { student_id: 1, subject_id: 2, marks: 90 },
