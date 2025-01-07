@@ -1,23 +1,19 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { Card, DataTable } from "react-native-paper";
-import {
-  courses,
-  marks as marksData,
-  subjects as subjectsData,
-} from "../data/StudentsDb";
+import { courses, marks, subjects } from "../data/StudentsDb";
 
 const Subjects = ({ student }) => {
   const course = courses.find((c) => c.id === student.course_id);
 
-  const marks = marksData.filter((m) => m.student_id === student.id);
+  const userMarks = marks.filter((m) => m.student_id === student.id);
 
-  const subjects = subjectsData.filter((s) =>
-    marks.map((m) => m.subject_id).includes(s.id),
+  const userSubjects = subjects.filter((s) =>
+    userMarks.map((m) => m.subject_id).includes(s.id),
   );
 
   const averageMarks =
-    marks.reduce((acc, m) => acc + m.marks, 0) / marks.length;
+    userMarks.reduce((acc, m) => acc + m.marks, 0) / userMarks.length;
 
   return (
     <View style={styles.view}>
@@ -48,12 +44,12 @@ const Subjects = ({ student }) => {
               <DataTable.Title numeric>Marks</DataTable.Title>
             </DataTable.Header>
 
-            {subjects.map((subject) => {
+            {userSubjects.map((subject) => {
               return (
                 <DataTable.Row key={subject.id}>
                   <DataTable.Cell>{subject.name}</DataTable.Cell>
                   <DataTable.Cell numeric>
-                    {marks.find((m) => m.subject_id === subject.id).marks}
+                    {userMarks.find((m) => m.subject_id === subject.id).marks}
                   </DataTable.Cell>
                 </DataTable.Row>
               );
