@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { Button, Icon, TextInput } from "react-native-paper";
 
-import { students } from "../assets/StudentsDb";
+import { students } from "../data/StudentsDb";
 
 const Login = () => {
   const [data, setData] = useState({
